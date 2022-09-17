@@ -1,29 +1,19 @@
 <Tipo> 
-    <Operacion= DIVISION> 
-        <Numero> ? 10 </Numero> 
-        <Numero> ! 9 </Numero> 
-    </Operacion> 
     <Operacion= SUMA> 
-        <Numero> 84 </Numero> 
-        <Numero> 33.7 </Numero> 
+        <Numero> 4.5 </Numero> 
+        <Numero> 5.32 </Numero> 
     </Operacion> 
-    <Operacion= MULTIPLICACION> 
-        <Numero> 5 </Numero> 
-        <Numero> 7 </Numero> 
-    </Operacion> 
-    <Operacion= DIVISION> 
-        <Numero> 45 </Numero> 
-        <Numero> 9 </Numero> 
-    </Operacion> 
-    <Operacion= POTENCIA> 
-        <Numero> 45 </Numero> 
-        <Numero> 9 </Numero> 
-    </Operacion> 
-    <Operacion= SUMA> 
-        <Numero> 5.4 </Numero> 
-        <Operacion= MULTIPLICACION> 
-            <Numero> 7.8 </Numero> 
-            <Numero> 4.3 </Numero> 
-        </Operacion> 
+    <Operacion= INVERSO> 
+        <Numero> 2 </Numero> 
     </Operacion> 
 </Tipo>
+
+<Texto>
+"Aqui puede venir cualquier cosa que se coloque :3 ? ! # $"
+</Texto>
+
+<Funcion = ESCRIBIR>
+    <Titulo> Operaciones </Titulo>
+    <Descripcion> [TEXTO] </Descripcion>
+    <Contenido> [TIPO] </Contenido>
+</Funcion>

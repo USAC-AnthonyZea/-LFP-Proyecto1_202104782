@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import INSERT, ttk
 from tkinter import filedialog
+from tkinter import messagebox
+from analizador_lexico import *
 
 class App(tk.Tk):
 
@@ -16,40 +18,97 @@ class App(tk.Tk):
 
         #Configuracion ventana
         self.configure(bg="#1c313a") #Color de fondo
+        self.file = None
 
         # Funcion para abrir archivo
         def openFile():
 
             #Abrimos el archivo
             try:
-                file = filedialog.askopenfile()
-            except TypeError:
-                print("Archivo incorrecto")
-            
-            #Leemos el contenido
-            lectura = file.read()
-            file.close() # Cerramos el archivo
+                self.file = filedialog.askopenfile()
 
-            txt_area.insert(INSERT, lectura) #insertamos el contenido en el text area
+                #Leemos el contenido
+                lectura = self.file.read()
+                self.file.close() # Cerramos el archivo
+                txt_area.insert(INSERT, lectura) #insertamos el contenido en el text area
             
+            except Exception:
+                messagebox.showerror("Archivo incorrecto", "Abra un archivo valido") 
+
+
         # Funcion para guardar archivo
         def saveFile():
 
-            new_file = filedialog.asksaveasfilename(defaultextension="txt", filetypes=[("Archivos de texto", "*.txt"), ("Todos los archivos", "*.*")])
+            new_file = filedialog.asksaveasfilename(defaultextension="txt", 
+            filetypes=[("Archivos de texto", "*.txt"), ("Todos los archivos", "*.*")]) #Cuadro de dialogo
 
-            if not new_file:
-                return 
+            if not new_file: #Validar que se este guardando un archivo
+                return messagebox.showerror("Error", "No se ha guardado ningun archivo") # En caos no se guarde
+
+            messagebox.showinfo("Guardar archivo", "Archivo guardado correctamente")
             new_archivo = open(new_file, "w")
             txt_entrada = txt_area.get(1.0, tk.END)
 
             new_archivo.write(txt_entrada)
             new_archivo.close()
 
+        # Funcion para analizar archivo
+        def parseFile():
+
+            estructure = txt_area.get(1.0, tk.END) #Tomamos el texto del area de texto
+
+            if str(estructure).isspace():
+                messagebox.showerror("Archivo invalido", "Verifique que haya abierto un archivo, \n           o un archivo adecuado") # Si el text esta vacio
+            
+            else:
+                # Proceso, para el analizador lexico
+                variable = parse(estructure)
+
+                getERFalse = False #Para obtener el resultado
+                getERTrue = True # Para obtener la expresion regular
+                n = 1
+                print()
+                
+                if variable:
+                    for var in variable:
+                        if isinstance(var, list): # Para obtener las operaciones
+                            for var_ in var:
+                                print(f"Operacion {n}:")
+                                print(str(var_.ejecutar(getERTrue))+" = " + str(var_.ejecutar(getERFalse)))
+                                print()
+                                n+=1
+                        elif isinstance(var, Texto): # Para obtener el texto
+                            print(var.ejecutar(getERTrue))
+                        elif isinstance(var, Funcion):
+                            print(var.ejecutar(getERTrue)) # Para obtener la funcion 
+
+                messagebox.showinfo("Analizador", "Archivo Analizado correctamente")
+
+        # Funcion para verificar errores
+        def parse_errores_File():
+
+            estructure = txt_area.get(1.0, tk.END) #Tomamos el texto del area de texto
+
+            if str(estructure).isspace():
+                messagebox.showerror("Archivo invalido", "Verifique que haya abierto un archivo, \n           o un archivo adecuado") # Si el text esta vacio
+
+            else:
+                #Errores
+                print("Errores\n")
+                cc = 1
+                for var in errores_:
+                    print(f"\tError {cc}:")
+                    print(var.toString())
+                    print()
+                    cc+=1
+                
+                messagebox.showinfo("Errores", "Archivo 'html' generado correctamente")
+
         #Create buttons
         btn_abrir = tk.Button(self, text="ABRIR", command = openFile ,font=("Berlin Sans FB Demi", 13, "bold"), bg="#455a64", fg="white")
         btn_guardar = tk.Button(self, text="GUARDAR", command=saveFile, font=("Berlin Sans FB Demi", 13, "bold"), bg="#455a64", fg="white")
-        btn_analizar = tk.Button(self, text="ANALIZAR", font=("Berlin Sans FB Demi", 13, "bold"), bg="#455a64", fg="white")
-        btn_errores = tk.Button(self, text="ERRORES", font=("Berlin Sans FB Demi", 13, "bold"), bg="#455a64", fg="white")
+        btn_analizar = tk.Button(self, text="ANALIZAR", command = parseFile, font=("Berlin Sans FB Demi", 13, "bold"), bg="#455a64", fg="white")
+        btn_errores = tk.Button(self, text="ERRORES", command = parse_errores_File,font=("Berlin Sans FB Demi", 13, "bold"), bg="#455a64", fg="white")
         btn_salir = tk.Button(self, text="SALIR", command = lambda: self.quit(),  font=("Berlin Sans FB Demi", 13, "bold"), bg="#455a64", fg="white")
 
         #Create Text area

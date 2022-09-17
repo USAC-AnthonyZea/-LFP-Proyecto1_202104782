@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'DECIMAL DIV ENTERO IGUAL LLAA LLAC RDIVISION RINVERSO RMOD RMULTIPLICACION RNUMERO ROPERACION RPOTENCIA RRAIZ RRESTA RSUMA RTIPOinit : instruccionesinstrucciones    : instrucciones instruccion\n                        |   instruccioninstruccion  : LLAA RTIPO LLAC instrucciones_2 LLAA DIV RTIPO LLACinstrucciones_2 : instrucciones_2 instruccion_2instrucciones_2 :  instruccion_2instruccion_2  :  LLAA ROPERACION IGUAL tipo LLAC instrucciones_2 LLAA DIV ROPERACION LLACinstruccion_2 : LLAA RNUMERO LLAC DECIMAL LLAA DIV RNUMERO LLAC instruccion_2 : LLAA RNUMERO LLAC ENTERO LLAA DIV RNUMERO LLAC tipo :   RSUMA\n            |   RRESTA\n            |   RMULTIPLICACION\n            |   RDIVISION\n            |   RRAIZ\n            |   RPOTENCIA\n            |   RMOD\n            |   RINVERSO\n    '
+_lr_signature = 'CADENA CORA CORC DECIMAL DIV ENTERO IGUAL LLAA LLAC RAZUL RBLANCO RCAFE RCELESTE RCOLOR RCONTENIDO RDESCRIPCION RDIVISION RESCRIBIR RESTILO RFUNCION RGRIS RINVERSO RMOD RMULTIPLICACION RNEGRO RNUMERO ROPERACION ROPERACIONES RPOTENCIA RRAIZ RRESTA RROJO RSUMA RTAMANIO RTEXTO RTEXTO2 RTIPO RTIPO2 RTITULO RVERDEinit : instruccionesinstrucciones    : instrucciones instruccion\n                        |   instruccioninstruccion  : INSTIPO\n                    | INSTEXTO\n                    | INSTFUNCION\n                    | INSTESTILO               \nINSTIPO    :   LLAA RTIPO LLAC instrucciones_2 LLAA DIV RTIPO LLACINSTEXTO   :   LLAA RTEXTO LLAC CADENA LLAA DIV RTEXTO LLACINSTFUNCION    :   LLAA RFUNCION IGUAL RESCRIBIR LLAC instrucciones_2 LLAA DIV RFUNCION LLACINSTESTILO     :   LLAA RESTILO LLAC instrucciones_2 LLAA DIV RESTILO LLACinstrucciones_2 : instrucciones_2 instruccion_2instrucciones_2 :  instruccion_2instruccion_2  :  LLAA ROPERACION IGUAL tipo LLAC instrucciones_2 LLAA DIV ROPERACION LLACinstruccion_2 : LLAA RNUMERO LLAC DECIMAL LLAA DIV RNUMERO LLAC instruccion_2 : LLAA RNUMERO LLAC ENTERO LLAA DIV RNUMERO LLAC instruccion_2 : CADENAinstruccion_2 : LLAA RTITULO LLAC ROPERACIONES LLAA DIV RTITULO LLACinstruccion_2 : LLAA RDESCRIPCION LLAC CORA RTEXTO2 CORC LLAA DIV RDESCRIPCION LLACinstruccion_2 : LLAA RCONTENIDO LLAC CORA RTIPO2 CORC LLAA DIV RCONTENIDO LLACinstruccion_2 : LLAA RTITULO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLACinstruccion_2 : LLAA RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLACinstruccion_2 : LLAA RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLACCOLOR    : RAZUL \n                | RVERDE \n                | RROJO \n                | RNEGRO \n                | RBLANCO \n                | RGRIS \n                | RCELESTE \n                | RCAFE\n    tipo :   RSUMA\n            |   RRESTA\n            |   RMULTIPLICACION\n            |   RDIVISION\n            |   RRAIZ\n            |   RPOTENCIA\n            |   RMOD\n            |   RINVERSO\n    '
     
-_lr_action_items = {'LLAA':([0,2,3,5,7,9,10,14,27,28,30,33,34,41,42,44,],[4,4,-3,-2,8,13,-6,-5,31,32,8,-4,37,-8,-9,-7,]),'$end':([1,2,3,5,33,],[0,-1,-3,-2,-4,]),'RTIPO':([4,17,],[6,29,]),'LLAC':([6,12,18,19,20,21,22,23,24,25,26,29,38,39,43,],[7,16,30,-10,-11,-12,-13,-14,-15,-16,-17,33,41,42,44,]),'ROPERACION':([8,13,37,40,],[11,11,11,43,]),'RNUMERO':([8,13,35,36,37,],[12,12,38,39,12,]),'IGUAL':([11,],[15,]),'DIV':([13,31,32,37,],[17,35,36,40,]),'RSUMA':([15,],[19,]),'RRESTA':([15,],[20,]),'RMULTIPLICACION':([15,],[21,]),'RDIVISION':([15,],[22,]),'RRAIZ':([15,],[23,]),'RPOTENCIA':([15,],[24,]),'RMOD':([15,],[25,]),'RINVERSO':([15,],[26,]),'DECIMAL':([16,],[27,]),'ENTERO':([16,],[28,]),}
+_lr_action_items = {'LLAA':([0,2,3,4,5,6,7,9,14,17,19,20,21,22,24,31,33,45,56,57,58,68,85,86,88,89,94,96,108,110,111,112,124,125,126,127,128,129,],[8,8,-3,-4,-5,-6,-7,-2,18,18,30,-13,-17,32,34,-12,18,66,69,70,71,18,-8,-9,-11,99,104,106,-10,-15,-16,-18,-14,-21,-19,-22,-20,-23,]),'$end':([1,2,3,4,5,6,7,9,85,86,88,108,],[0,-1,-3,-4,-5,-6,-7,-2,-8,-9,-11,-10,]),'RTIPO':([8,43,],[10,64,]),'RTEXTO':([8,44,],[11,65,]),'RFUNCION':([8,87,],[12,98,]),'RESTILO':([8,46,],[13,67,]),'LLAC':([10,11,13,23,26,27,28,29,47,48,49,50,51,52,53,54,55,64,65,67,98,100,101,102,118,119,120,121,122,123,],[14,15,17,33,36,37,39,41,68,-32,-33,-34,-35,-36,-37,-38,-39,85,86,88,108,110,111,112,124,125,126,127,128,129,]),'IGUAL':([12,25,38,40,42,93,95,97,],[16,35,59,61,63,103,105,107,]),'CADENA':([14,15,17,19,20,21,24,31,33,45,68,89,110,111,112,124,125,126,127,128,129,],[21,22,21,21,-13,-17,21,-12,21,21,21,21,-15,-16,-18,-14,-21,-19,-22,-20,-23,]),'RESCRIBIR':([16,],[23,]),'ROPERACION':([18,30,34,66,99,109,],[25,25,25,25,25,118,]),'RNUMERO':([18,30,34,66,90,91,99,],[26,26,26,26,100,101,26,]),'RTITULO':([18,30,34,66,92,99,],[27,27,27,27,102,27,]),'RDESCRIPCION':([18,30,34,66,99,114,],[28,28,28,28,28,120,]),'RCONTENIDO':([18,30,34,66,99,116,],[29,29,29,29,29,122,]),'RCOLOR':([27,28,29,],[38,40,42,]),'DIV':([30,32,34,66,69,70,71,99,104,106,113,115,117,],[43,44,46,87,90,91,92,109,114,116,119,121,123,]),'RSUMA':([35,],[48,]),'RRESTA':([35,],[49,]),'RMULTIPLICACION':([35,],[50,]),'RDIVISION':([35,],[51,]),'RRAIZ':([35,],[52,]),'RPOTENCIA':([35,],[53,]),'RMOD':([35,],[54,]),'RINVERSO':([35,],[55,]),'DECIMAL':([36,],[56,]),'ENTERO':([36,103,105,107,],[57,113,115,117,]),'ROPERACIONES':([37,],[58,]),'CORA':([39,41,],[60,62,]),'RAZUL':([59,61,63,],[73,73,73,]),'RVERDE':([59,61,63,],[74,74,74,]),'RROJO':([59,61,63,],[75,75,75,]),'RNEGRO':([59,61,63,],[76,76,76,]),'RBLANCO':([59,61,63,],[77,77,77,]),'RGRIS':([59,61,63,],[78,78,78,]),'RCELESTE':([59,61,63,],[79,79,79,]),'RCAFE':([59,61,63,],[80,80,80,]),'RTEXTO2':([60,],[81,]),'RTIPO2':([62,],[83,]),'RTAMANIO':([72,73,74,75,76,77,78,79,80,82,84,],[93,-24,-25,-26,-27,-28,-29,-30,-31,95,97,]),'CORC':([81,83,],[94,96,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'init':([0,],[1,]),'instrucciones':([0,],[2,]),'instruccion':([0,2,],[3,5,]),'instrucciones_2':([7,30,],[9,34,]),'instruccion_2':([7,9,30,34,],[10,14,10,14,]),'tipo':([15,],[18,]),}
+_lr_goto_items = {'init':([0,],[1,]),'instrucciones':([0,],[2,]),'instruccion':([0,2,],[3,9,]),'INSTIPO':([0,2,],[4,4,]),'INSTEXTO':([0,2,],[5,5,]),'INSTFUNCION':([0,2,],[6,6,]),'INSTESTILO':([0,2,],[7,7,]),'instrucciones_2':([14,17,33,68,],[19,24,45,89,]),'instruccion_2':([14,17,19,24,33,45,68,89,],[20,20,31,31,20,31,20,31,]),'tipo':([35,],[47,]),'COLOR':([59,61,63,],[72,82,84,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,21 +27,43 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> init","S'",1,None,None,None),
-  ('init -> instrucciones','init',1,'p_init','analizador_lexico.py',99),
-  ('instrucciones -> instrucciones instruccion','instrucciones',2,'p_instrucciones_lista','analizador_lexico.py',104),
-  ('instrucciones -> instruccion','instrucciones',1,'p_instrucciones_lista','analizador_lexico.py',105),
-  ('instruccion -> LLAA RTIPO LLAC instrucciones_2 LLAA DIV RTIPO LLAC','instruccion',8,'p_instruccion','analizador_lexico.py',113),
-  ('instrucciones_2 -> instrucciones_2 instruccion_2','instrucciones_2',2,'p_instrucciones_2_lista','analizador_lexico.py',117),
-  ('instrucciones_2 -> instruccion_2','instrucciones_2',1,'p_instrucciones_2_instruccion','analizador_lexico.py',122),
-  ('instruccion_2 -> LLAA ROPERACION IGUAL tipo LLAC instrucciones_2 LLAA DIV ROPERACION LLAC','instruccion_2',10,'p_instruccion_2','analizador_lexico.py',126),
-  ('instruccion_2 -> LLAA RNUMERO LLAC DECIMAL LLAA DIV RNUMERO LLAC','instruccion_2',8,'p_instruccion_2_decimal','analizador_lexico.py',130),
-  ('instruccion_2 -> LLAA RNUMERO LLAC ENTERO LLAA DIV RNUMERO LLAC','instruccion_2',8,'p_instruccion_2_entero','analizador_lexico.py',134),
-  ('tipo -> RSUMA','tipo',1,'p_tipo','analizador_lexico.py',145),
-  ('tipo -> RRESTA','tipo',1,'p_tipo','analizador_lexico.py',146),
-  ('tipo -> RMULTIPLICACION','tipo',1,'p_tipo','analizador_lexico.py',147),
-  ('tipo -> RDIVISION','tipo',1,'p_tipo','analizador_lexico.py',148),
-  ('tipo -> RRAIZ','tipo',1,'p_tipo','analizador_lexico.py',149),
-  ('tipo -> RPOTENCIA','tipo',1,'p_tipo','analizador_lexico.py',150),
-  ('tipo -> RMOD','tipo',1,'p_tipo','analizador_lexico.py',151),
-  ('tipo -> RINVERSO','tipo',1,'p_tipo','analizador_lexico.py',152),
+  ('init -> instrucciones','init',1,'p_init','analizador_lexico.py',145),
+  ('instrucciones -> instrucciones instruccion','instrucciones',2,'p_instrucciones_lista','analizador_lexico.py',150),
+  ('instrucciones -> instruccion','instrucciones',1,'p_instrucciones_lista','analizador_lexico.py',151),
+  ('instruccion -> INSTIPO','instruccion',1,'p_instruccion','analizador_lexico.py',159),
+  ('instruccion -> INSTEXTO','instruccion',1,'p_instruccion','analizador_lexico.py',160),
+  ('instruccion -> INSTFUNCION','instruccion',1,'p_instruccion','analizador_lexico.py',161),
+  ('instruccion -> INSTESTILO','instruccion',1,'p_instruccion','analizador_lexico.py',162),
+  ('INSTIPO -> LLAA RTIPO LLAC instrucciones_2 LLAA DIV RTIPO LLAC','INSTIPO',8,'p_instruccionTipo','analizador_lexico.py',167),
+  ('INSTEXTO -> LLAA RTEXTO LLAC CADENA LLAA DIV RTEXTO LLAC','INSTEXTO',8,'p_instruccionTexto','analizador_lexico.py',171),
+  ('INSTFUNCION -> LLAA RFUNCION IGUAL RESCRIBIR LLAC instrucciones_2 LLAA DIV RFUNCION LLAC','INSTFUNCION',10,'p_instruccionFuncion','analizador_lexico.py',175),
+  ('INSTESTILO -> LLAA RESTILO LLAC instrucciones_2 LLAA DIV RESTILO LLAC','INSTESTILO',8,'p_instruccionEstilo','analizador_lexico.py',180),
+  ('instrucciones_2 -> instrucciones_2 instruccion_2','instrucciones_2',2,'p_instrucciones_2_lista','analizador_lexico.py',185),
+  ('instrucciones_2 -> instruccion_2','instrucciones_2',1,'p_instrucciones_2_instruccion','analizador_lexico.py',190),
+  ('instruccion_2 -> LLAA ROPERACION IGUAL tipo LLAC instrucciones_2 LLAA DIV ROPERACION LLAC','instruccion_2',10,'p_instruccion_2','analizador_lexico.py',194),
+  ('instruccion_2 -> LLAA RNUMERO LLAC DECIMAL LLAA DIV RNUMERO LLAC','instruccion_2',8,'p_instruccion_2_decimal','analizador_lexico.py',201),
+  ('instruccion_2 -> LLAA RNUMERO LLAC ENTERO LLAA DIV RNUMERO LLAC','instruccion_2',8,'p_instruccion_2_entero','analizador_lexico.py',205),
+  ('instruccion_2 -> CADENA','instruccion_2',1,'p_instruccion_2_texto','analizador_lexico.py',209),
+  ('instruccion_2 -> LLAA RTITULO LLAC ROPERACIONES LLAA DIV RTITULO LLAC','instruccion_2',8,'p_instruccion_2_titulo','analizador_lexico.py',213),
+  ('instruccion_2 -> LLAA RDESCRIPCION LLAC CORA RTEXTO2 CORC LLAA DIV RDESCRIPCION LLAC','instruccion_2',10,'p_instruccion_2_descripcion','analizador_lexico.py',218),
+  ('instruccion_2 -> LLAA RCONTENIDO LLAC CORA RTIPO2 CORC LLAA DIV RCONTENIDO LLAC','instruccion_2',10,'p_instruccion_2_contenido','analizador_lexico.py',223),
+  ('instruccion_2 -> LLAA RTITULO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC','instruccion_2',10,'p_instruccion_2_titulo_2','analizador_lexico.py',228),
+  ('instruccion_2 -> LLAA RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC','instruccion_2',10,'p_instruccion_2_descripcion_2','analizador_lexico.py',233),
+  ('instruccion_2 -> LLAA RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC','instruccion_2',10,'p_instruccion_2_contenido_2','analizador_lexico.py',238),
+  ('COLOR -> RAZUL','COLOR',1,'p_color','analizador_lexico.py',243),
+  ('COLOR -> RVERDE','COLOR',1,'p_color','analizador_lexico.py',244),
+  ('COLOR -> RROJO','COLOR',1,'p_color','analizador_lexico.py',245),
+  ('COLOR -> RNEGRO','COLOR',1,'p_color','analizador_lexico.py',246),
+  ('COLOR -> RBLANCO','COLOR',1,'p_color','analizador_lexico.py',247),
+  ('COLOR -> RGRIS','COLOR',1,'p_color','analizador_lexico.py',248),
+  ('COLOR -> RCELESTE','COLOR',1,'p_color','analizador_lexico.py',249),
+  ('COLOR -> RCAFE','COLOR',1,'p_color','analizador_lexico.py',250),
+  ('tipo -> RSUMA','tipo',1,'p_tipo','analizador_lexico.py',256),
+  ('tipo -> RRESTA','tipo',1,'p_tipo','analizador_lexico.py',257),
+  ('tipo -> RMULTIPLICACION','tipo',1,'p_tipo','analizador_lexico.py',258),
+  ('tipo -> RDIVISION','tipo',1,'p_tipo','analizador_lexico.py',259),
+  ('tipo -> RRAIZ','tipo',1,'p_tipo','analizador_lexico.py',260),
+  ('tipo -> RPOTENCIA','tipo',1,'p_tipo','analizador_lexico.py',261),
+  ('tipo -> RMOD','tipo',1,'p_tipo','analizador_lexico.py',262),
+  ('tipo -> RINVERSO','tipo',1,'p_tipo','analizador_lexico.py',263),
 ]
