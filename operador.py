@@ -10,4 +10,7 @@ class Operador(Enum):
     MOD = 6
     RAIZ = 7
     INVERSO = 8
+    SENO = 9
+    COSENO = 10
+    TANGENTE = 11
     

@@ -3,6 +3,7 @@ from tkinter import INSERT, ttk
 from tkinter import filedialog
 from tkinter import messagebox
 from analizador_lexico import *
+import os
 
 class App(tk.Tk):
 
@@ -18,24 +19,27 @@ class App(tk.Tk):
 
         #Configuracion ventana
         self.configure(bg="#1c313a") #Color de fondo
-        self.file = None
-
+    
         # Funcion para abrir archivo
         def openFile():
 
             #Abrimos el archivo
-            try:
-                self.file = filedialog.askopenfile()
+            file = filedialog.askopenfilename() # Obtenemos ruta y nombre de archivo
+
+            ruta, extension = os.path.splitext(file) # Parseamos el archivo para obtener ruta
+
+            if extension == ".LFP" or extension == ".lfp": # Verificamos que sea .lfp
+
+                fileOpen = open(file, 'r') # Abrimos el archivo
 
                 #Leemos el contenido
-                lectura = self.file.read()
-                self.file.close() # Cerramos el archivo
+                lectura = fileOpen.read() # Leemos el archivo
+                fileOpen.close() # Cerramos el archivo
                 txt_area.insert(INSERT, lectura) #insertamos el contenido en el text area
+                
+            else:
+                messagebox.showerror(message="La extension del archivo no es '.LFP'", title="Error")
             
-            except Exception:
-                messagebox.showerror("Archivo incorrecto", "Abra un archivo valido") 
-
-
         # Funcion para guardar archivo
         def saveFile():
 
@@ -64,23 +68,30 @@ class App(tk.Tk):
                 # Proceso, para el analizador lexico
                 variable = parse(estructure)
 
-                getERFalse = False #Para obtener el resultado
-                getERTrue = True # Para obtener la expresion regular
+                #getERFalse = False #Para obtener el resultado
+                #getERTrue = True # Para obtener la expresion regular
                 n = 1
                 print()
                 
                 if variable:
                     for var in variable:
-                        if isinstance(var, list): # Para obtener las operaciones
+                        if isinstance(var, list):
                             for var_ in var:
-                                print(f"Operacion {n}:")
-                                print(str(var_.ejecutar(getERTrue))+" = " + str(var_.ejecutar(getERFalse)))
-                                print()
-                                n+=1
-                        elif isinstance(var, Texto): # Para obtener el texto
-                            print(var.ejecutar(getERTrue))
+                                if isinstance(var_, Aritmeticas):
+                                    print(f"Operacion {n}: ")
+                                    print(f'{var_.ejecutar(True)} = {var_.ejecutar(False)}')
+                                    print()
+                                    n+=1
+                                elif isinstance(var_, Estilo):
+                                    print(var_.ejecutar(False))
+                                    print()
+                    
+                        elif isinstance(var, Texto):
+                            print(var.ejecutar(False))
+                            print()
                         elif isinstance(var, Funcion):
-                            print(var.ejecutar(getERTrue)) # Para obtener la funcion 
+                            print(var.ejecutar(False))
+                            print()
 
                 messagebox.showinfo("Analizador", "Archivo Analizado correctamente")
 

@@ -15,3 +15,12 @@ class Generador:
 
     def addReverse(self, n1):
         return f'( {n1}^(-1) )'
+    
+    def addSen(self, n1):
+        return f'( sen({n1}) )'
+    
+    def addCos(self, n1):
+        return f'( cos({n1}) )'
+    
+    def addTan(self, n1):
+        return f'( tan({n1}) )'

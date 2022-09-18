@@ -42,6 +42,9 @@ Rule 36    tipo -> RRAIZ
 Rule 37    tipo -> RPOTENCIA
 Rule 38    tipo -> RMOD
 Rule 39    tipo -> RINVERSO
+Rule 40    tipo -> RSENO
+Rule 41    tipo -> RCOSENO
+Rule 42    tipo -> RTANGENTE
 
 Terminals, with rules where they appear
 
@@ -60,6 +63,7 @@ RCAFE                : 31
 RCELESTE             : 30
 RCOLOR               : 21 22 23
 RCONTENIDO           : 20 20 23
+RCOSENO              : 41
 RDESCRIPCION         : 19 19 22
 RDIVISION            : 35
 RESCRIBIR            : 10
@@ -77,8 +81,10 @@ RPOTENCIA            : 37
 RRAIZ                : 36
 RRESTA               : 33
 RROJO                : 26
+RSENO                : 40
 RSUMA                : 32
 RTAMANIO             : 21 22 23
+RTANGENTE            : 42
 RTEXTO               : 9 9
 RTEXTO2              : 19
 RTIPO                : 8 8
@@ -524,6 +530,9 @@ state 35
     (37) tipo -> . RPOTENCIA
     (38) tipo -> . RMOD
     (39) tipo -> . RINVERSO
+    (40) tipo -> . RSENO
+    (41) tipo -> . RCOSENO
+    (42) tipo -> . RTANGENTE
 
     RSUMA           shift and go to state 48
     RRESTA          shift and go to state 49
@@ -533,6 +542,9 @@ state 35
     RPOTENCIA       shift and go to state 53
     RMOD            shift and go to state 54
     RINVERSO        shift and go to state 55
+    RSENO           shift and go to state 56
+    RCOSENO         shift and go to state 57
+    RTANGENTE       shift and go to state 58
 
     tipo                           shift and go to state 47
 
@@ -541,64 +553,64 @@ state 36
     (15) instruccion_2 -> LLAA RNUMERO LLAC . DECIMAL LLAA DIV RNUMERO LLAC
     (16) instruccion_2 -> LLAA RNUMERO LLAC . ENTERO LLAA DIV RNUMERO LLAC
 
-    DECIMAL         shift and go to state 56
-    ENTERO          shift and go to state 57
+    DECIMAL         shift and go to state 59
+    ENTERO          shift and go to state 60
 
 
 state 37
 
     (18) instruccion_2 -> LLAA RTITULO LLAC . ROPERACIONES LLAA DIV RTITULO LLAC
 
-    ROPERACIONES    shift and go to state 58
+    ROPERACIONES    shift and go to state 61
 
 
 state 38
 
     (21) instruccion_2 -> LLAA RTITULO RCOLOR . IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC
 
-    IGUAL           shift and go to state 59
+    IGUAL           shift and go to state 62
 
 
 state 39
 
     (19) instruccion_2 -> LLAA RDESCRIPCION LLAC . CORA RTEXTO2 CORC LLAA DIV RDESCRIPCION LLAC
 
-    CORA            shift and go to state 60
+    CORA            shift and go to state 63
 
 
 state 40
 
     (22) instruccion_2 -> LLAA RDESCRIPCION RCOLOR . IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC
 
-    IGUAL           shift and go to state 61
+    IGUAL           shift and go to state 64
 
 
 state 41
 
     (20) instruccion_2 -> LLAA RCONTENIDO LLAC . CORA RTIPO2 CORC LLAA DIV RCONTENIDO LLAC
 
-    CORA            shift and go to state 62
+    CORA            shift and go to state 65
 
 
 state 42
 
     (23) instruccion_2 -> LLAA RCONTENIDO RCOLOR . IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC
 
-    IGUAL           shift and go to state 63
+    IGUAL           shift and go to state 66
 
 
 state 43
 
     (8) INSTIPO -> LLAA RTIPO LLAC instrucciones_2 LLAA DIV . RTIPO LLAC
 
-    RTIPO           shift and go to state 64
+    RTIPO           shift and go to state 67
 
 
 state 44
 
     (9) INSTEXTO -> LLAA RTEXTO LLAC CADENA LLAA DIV . RTEXTO LLAC
 
-    RTEXTO          shift and go to state 65
+    RTEXTO          shift and go to state 68
 
 
 state 45
@@ -616,7 +628,7 @@ state 45
     (22) instruccion_2 -> . LLAA RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC
     (23) instruccion_2 -> . LLAA RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC
 
-    LLAA            shift and go to state 66
+    LLAA            shift and go to state 69
     CADENA          shift and go to state 21
 
     instruccion_2                  shift and go to state 31
@@ -625,14 +637,14 @@ state 46
 
     (11) INSTESTILO -> LLAA RESTILO LLAC instrucciones_2 LLAA DIV . RESTILO LLAC
 
-    RESTILO         shift and go to state 67
+    RESTILO         shift and go to state 70
 
 
 state 47
 
     (14) instruccion_2 -> LLAA ROPERACION IGUAL tipo . LLAC instrucciones_2 LLAA DIV ROPERACION LLAC
 
-    LLAC            shift and go to state 68
+    LLAC            shift and go to state 71
 
 
 state 48
@@ -693,26 +705,47 @@ state 55
 
 state 56
 
-    (15) instruccion_2 -> LLAA RNUMERO LLAC DECIMAL . LLAA DIV RNUMERO LLAC
+    (40) tipo -> RSENO .
 
-    LLAA            shift and go to state 69
+    LLAC            reduce using rule 40 (tipo -> RSENO .)
 
 
 state 57
 
-    (16) instruccion_2 -> LLAA RNUMERO LLAC ENTERO . LLAA DIV RNUMERO LLAC
+    (41) tipo -> RCOSENO .
 
-    LLAA            shift and go to state 70
+    LLAC            reduce using rule 41 (tipo -> RCOSENO .)
 
 
 state 58
 
-    (18) instruccion_2 -> LLAA RTITULO LLAC ROPERACIONES . LLAA DIV RTITULO LLAC
+    (42) tipo -> RTANGENTE .
 
-    LLAA            shift and go to state 71
+    LLAC            reduce using rule 42 (tipo -> RTANGENTE .)
 
 
 state 59
+
+    (15) instruccion_2 -> LLAA RNUMERO LLAC DECIMAL . LLAA DIV RNUMERO LLAC
+
+    LLAA            shift and go to state 72
+
+
+state 60
+
+    (16) instruccion_2 -> LLAA RNUMERO LLAC ENTERO . LLAA DIV RNUMERO LLAC
+
+    LLAA            shift and go to state 73
+
+
+state 61
+
+    (18) instruccion_2 -> LLAA RTITULO LLAC ROPERACIONES . LLAA DIV RTITULO LLAC
+
+    LLAA            shift and go to state 74
+
+
+state 62
 
     (21) instruccion_2 -> LLAA RTITULO RCOLOR IGUAL . COLOR RTAMANIO IGUAL ENTERO DIV LLAC
     (24) COLOR -> . RAZUL
@@ -724,25 +757,25 @@ state 59
     (30) COLOR -> . RCELESTE
     (31) COLOR -> . RCAFE
 
-    RAZUL           shift and go to state 73
-    RVERDE          shift and go to state 74
-    RROJO           shift and go to state 75
-    RNEGRO          shift and go to state 76
-    RBLANCO         shift and go to state 77
-    RGRIS           shift and go to state 78
-    RCELESTE        shift and go to state 79
-    RCAFE           shift and go to state 80
+    RAZUL           shift and go to state 76
+    RVERDE          shift and go to state 77
+    RROJO           shift and go to state 78
+    RNEGRO          shift and go to state 79
+    RBLANCO         shift and go to state 80
+    RGRIS           shift and go to state 81
+    RCELESTE        shift and go to state 82
+    RCAFE           shift and go to state 83
 
-    COLOR                          shift and go to state 72
+    COLOR                          shift and go to state 75
 
-state 60
+state 63
 
     (19) instruccion_2 -> LLAA RDESCRIPCION LLAC CORA . RTEXTO2 CORC LLAA DIV RDESCRIPCION LLAC
 
-    RTEXTO2         shift and go to state 81
+    RTEXTO2         shift and go to state 84
 
 
-state 61
+state 64
 
     (22) instruccion_2 -> LLAA RDESCRIPCION RCOLOR IGUAL . COLOR RTAMANIO IGUAL ENTERO DIV LLAC
     (24) COLOR -> . RAZUL
@@ -754,25 +787,25 @@ state 61
     (30) COLOR -> . RCELESTE
     (31) COLOR -> . RCAFE
 
-    RAZUL           shift and go to state 73
-    RVERDE          shift and go to state 74
-    RROJO           shift and go to state 75
-    RNEGRO          shift and go to state 76
-    RBLANCO         shift and go to state 77
-    RGRIS           shift and go to state 78
-    RCELESTE        shift and go to state 79
-    RCAFE           shift and go to state 80
+    RAZUL           shift and go to state 76
+    RVERDE          shift and go to state 77
+    RROJO           shift and go to state 78
+    RNEGRO          shift and go to state 79
+    RBLANCO         shift and go to state 80
+    RGRIS           shift and go to state 81
+    RCELESTE        shift and go to state 82
+    RCAFE           shift and go to state 83
 
-    COLOR                          shift and go to state 82
+    COLOR                          shift and go to state 85
 
-state 62
+state 65
 
     (20) instruccion_2 -> LLAA RCONTENIDO LLAC CORA . RTIPO2 CORC LLAA DIV RCONTENIDO LLAC
 
-    RTIPO2          shift and go to state 83
+    RTIPO2          shift and go to state 86
 
 
-state 63
+state 66
 
     (23) instruccion_2 -> LLAA RCONTENIDO RCOLOR IGUAL . COLOR RTAMANIO IGUAL ENTERO DIV LLAC
     (24) COLOR -> . RAZUL
@@ -784,32 +817,32 @@ state 63
     (30) COLOR -> . RCELESTE
     (31) COLOR -> . RCAFE
 
-    RAZUL           shift and go to state 73
-    RVERDE          shift and go to state 74
-    RROJO           shift and go to state 75
-    RNEGRO          shift and go to state 76
-    RBLANCO         shift and go to state 77
-    RGRIS           shift and go to state 78
-    RCELESTE        shift and go to state 79
-    RCAFE           shift and go to state 80
+    RAZUL           shift and go to state 76
+    RVERDE          shift and go to state 77
+    RROJO           shift and go to state 78
+    RNEGRO          shift and go to state 79
+    RBLANCO         shift and go to state 80
+    RGRIS           shift and go to state 81
+    RCELESTE        shift and go to state 82
+    RCAFE           shift and go to state 83
 
-    COLOR                          shift and go to state 84
+    COLOR                          shift and go to state 87
 
-state 64
+state 67
 
     (8) INSTIPO -> LLAA RTIPO LLAC instrucciones_2 LLAA DIV RTIPO . LLAC
 
-    LLAC            shift and go to state 85
+    LLAC            shift and go to state 88
 
 
-state 65
+state 68
 
     (9) INSTEXTO -> LLAA RTEXTO LLAC CADENA LLAA DIV RTEXTO . LLAC
 
-    LLAC            shift and go to state 86
+    LLAC            shift and go to state 89
 
 
-state 66
+state 69
 
     (10) INSTFUNCION -> LLAA RFUNCION IGUAL RESCRIBIR LLAC instrucciones_2 LLAA . DIV RFUNCION LLAC
     (14) instruccion_2 -> LLAA . ROPERACION IGUAL tipo LLAC instrucciones_2 LLAA DIV ROPERACION LLAC
@@ -822,7 +855,7 @@ state 66
     (22) instruccion_2 -> LLAA . RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC
     (23) instruccion_2 -> LLAA . RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC
 
-    DIV             shift and go to state 87
+    DIV             shift and go to state 90
     ROPERACION      shift and go to state 25
     RNUMERO         shift and go to state 26
     RTITULO         shift and go to state 27
@@ -830,14 +863,14 @@ state 66
     RCONTENIDO      shift and go to state 29
 
 
-state 67
+state 70
 
     (11) INSTESTILO -> LLAA RESTILO LLAC instrucciones_2 LLAA DIV RESTILO . LLAC
 
-    LLAC            shift and go to state 88
+    LLAC            shift and go to state 91
 
 
-state 68
+state 71
 
     (14) instruccion_2 -> LLAA ROPERACION IGUAL tipo LLAC . instrucciones_2 LLAA DIV ROPERACION LLAC
     (12) instrucciones_2 -> . instrucciones_2 instruccion_2
@@ -856,122 +889,122 @@ state 68
     LLAA            shift and go to state 18
     CADENA          shift and go to state 21
 
-    instrucciones_2                shift and go to state 89
+    instrucciones_2                shift and go to state 92
     instruccion_2                  shift and go to state 20
-
-state 69
-
-    (15) instruccion_2 -> LLAA RNUMERO LLAC DECIMAL LLAA . DIV RNUMERO LLAC
-
-    DIV             shift and go to state 90
-
-
-state 70
-
-    (16) instruccion_2 -> LLAA RNUMERO LLAC ENTERO LLAA . DIV RNUMERO LLAC
-
-    DIV             shift and go to state 91
-
-
-state 71
-
-    (18) instruccion_2 -> LLAA RTITULO LLAC ROPERACIONES LLAA . DIV RTITULO LLAC
-
-    DIV             shift and go to state 92
-
 
 state 72
 
-    (21) instruccion_2 -> LLAA RTITULO RCOLOR IGUAL COLOR . RTAMANIO IGUAL ENTERO DIV LLAC
+    (15) instruccion_2 -> LLAA RNUMERO LLAC DECIMAL LLAA . DIV RNUMERO LLAC
 
-    RTAMANIO        shift and go to state 93
+    DIV             shift and go to state 93
 
 
 state 73
+
+    (16) instruccion_2 -> LLAA RNUMERO LLAC ENTERO LLAA . DIV RNUMERO LLAC
+
+    DIV             shift and go to state 94
+
+
+state 74
+
+    (18) instruccion_2 -> LLAA RTITULO LLAC ROPERACIONES LLAA . DIV RTITULO LLAC
+
+    DIV             shift and go to state 95
+
+
+state 75
+
+    (21) instruccion_2 -> LLAA RTITULO RCOLOR IGUAL COLOR . RTAMANIO IGUAL ENTERO DIV LLAC
+
+    RTAMANIO        shift and go to state 96
+
+
+state 76
 
     (24) COLOR -> RAZUL .
 
     RTAMANIO        reduce using rule 24 (COLOR -> RAZUL .)
 
 
-state 74
+state 77
 
     (25) COLOR -> RVERDE .
 
     RTAMANIO        reduce using rule 25 (COLOR -> RVERDE .)
 
 
-state 75
+state 78
 
     (26) COLOR -> RROJO .
 
     RTAMANIO        reduce using rule 26 (COLOR -> RROJO .)
 
 
-state 76
+state 79
 
     (27) COLOR -> RNEGRO .
 
     RTAMANIO        reduce using rule 27 (COLOR -> RNEGRO .)
 
 
-state 77
+state 80
 
     (28) COLOR -> RBLANCO .
 
     RTAMANIO        reduce using rule 28 (COLOR -> RBLANCO .)
 
 
-state 78
+state 81
 
     (29) COLOR -> RGRIS .
 
     RTAMANIO        reduce using rule 29 (COLOR -> RGRIS .)
 
 
-state 79
+state 82
 
     (30) COLOR -> RCELESTE .
 
     RTAMANIO        reduce using rule 30 (COLOR -> RCELESTE .)
 
 
-state 80
+state 83
 
     (31) COLOR -> RCAFE .
 
     RTAMANIO        reduce using rule 31 (COLOR -> RCAFE .)
 
 
-state 81
+state 84
 
     (19) instruccion_2 -> LLAA RDESCRIPCION LLAC CORA RTEXTO2 . CORC LLAA DIV RDESCRIPCION LLAC
 
-    CORC            shift and go to state 94
-
-
-state 82
-
-    (22) instruccion_2 -> LLAA RDESCRIPCION RCOLOR IGUAL COLOR . RTAMANIO IGUAL ENTERO DIV LLAC
-
-    RTAMANIO        shift and go to state 95
-
-
-state 83
-
-    (20) instruccion_2 -> LLAA RCONTENIDO LLAC CORA RTIPO2 . CORC LLAA DIV RCONTENIDO LLAC
-
-    CORC            shift and go to state 96
-
-
-state 84
-
-    (23) instruccion_2 -> LLAA RCONTENIDO RCOLOR IGUAL COLOR . RTAMANIO IGUAL ENTERO DIV LLAC
-
-    RTAMANIO        shift and go to state 97
+    CORC            shift and go to state 97
 
 
 state 85
+
+    (22) instruccion_2 -> LLAA RDESCRIPCION RCOLOR IGUAL COLOR . RTAMANIO IGUAL ENTERO DIV LLAC
+
+    RTAMANIO        shift and go to state 98
+
+
+state 86
+
+    (20) instruccion_2 -> LLAA RCONTENIDO LLAC CORA RTIPO2 . CORC LLAA DIV RCONTENIDO LLAC
+
+    CORC            shift and go to state 99
+
+
+state 87
+
+    (23) instruccion_2 -> LLAA RCONTENIDO RCOLOR IGUAL COLOR . RTAMANIO IGUAL ENTERO DIV LLAC
+
+    RTAMANIO        shift and go to state 100
+
+
+state 88
 
     (8) INSTIPO -> LLAA RTIPO LLAC instrucciones_2 LLAA DIV RTIPO LLAC .
 
@@ -979,7 +1012,7 @@ state 85
     $end            reduce using rule 8 (INSTIPO -> LLAA RTIPO LLAC instrucciones_2 LLAA DIV RTIPO LLAC .)
 
 
-state 86
+state 89
 
     (9) INSTEXTO -> LLAA RTEXTO LLAC CADENA LLAA DIV RTEXTO LLAC .
 
@@ -987,14 +1020,14 @@ state 86
     $end            reduce using rule 9 (INSTEXTO -> LLAA RTEXTO LLAC CADENA LLAA DIV RTEXTO LLAC .)
 
 
-state 87
+state 90
 
     (10) INSTFUNCION -> LLAA RFUNCION IGUAL RESCRIBIR LLAC instrucciones_2 LLAA DIV . RFUNCION LLAC
 
-    RFUNCION        shift and go to state 98
+    RFUNCION        shift and go to state 101
 
 
-state 88
+state 91
 
     (11) INSTESTILO -> LLAA RESTILO LLAC instrucciones_2 LLAA DIV RESTILO LLAC .
 
@@ -1002,7 +1035,7 @@ state 88
     $end            reduce using rule 11 (INSTESTILO -> LLAA RESTILO LLAC instrucciones_2 LLAA DIV RESTILO LLAC .)
 
 
-state 89
+state 92
 
     (14) instruccion_2 -> LLAA ROPERACION IGUAL tipo LLAC instrucciones_2 . LLAA DIV ROPERACION LLAC
     (12) instrucciones_2 -> instrucciones_2 . instruccion_2
@@ -1017,75 +1050,75 @@ state 89
     (22) instruccion_2 -> . LLAA RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC
     (23) instruccion_2 -> . LLAA RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC
 
-    LLAA            shift and go to state 99
+    LLAA            shift and go to state 102
     CADENA          shift and go to state 21
 
     instruccion_2                  shift and go to state 31
 
-state 90
+state 93
 
     (15) instruccion_2 -> LLAA RNUMERO LLAC DECIMAL LLAA DIV . RNUMERO LLAC
 
-    RNUMERO         shift and go to state 100
-
-
-state 91
-
-    (16) instruccion_2 -> LLAA RNUMERO LLAC ENTERO LLAA DIV . RNUMERO LLAC
-
-    RNUMERO         shift and go to state 101
-
-
-state 92
-
-    (18) instruccion_2 -> LLAA RTITULO LLAC ROPERACIONES LLAA DIV . RTITULO LLAC
-
-    RTITULO         shift and go to state 102
-
-
-state 93
-
-    (21) instruccion_2 -> LLAA RTITULO RCOLOR IGUAL COLOR RTAMANIO . IGUAL ENTERO DIV LLAC
-
-    IGUAL           shift and go to state 103
+    RNUMERO         shift and go to state 103
 
 
 state 94
 
-    (19) instruccion_2 -> LLAA RDESCRIPCION LLAC CORA RTEXTO2 CORC . LLAA DIV RDESCRIPCION LLAC
+    (16) instruccion_2 -> LLAA RNUMERO LLAC ENTERO LLAA DIV . RNUMERO LLAC
 
-    LLAA            shift and go to state 104
+    RNUMERO         shift and go to state 104
 
 
 state 95
 
-    (22) instruccion_2 -> LLAA RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO . IGUAL ENTERO DIV LLAC
+    (18) instruccion_2 -> LLAA RTITULO LLAC ROPERACIONES LLAA DIV . RTITULO LLAC
 
-    IGUAL           shift and go to state 105
+    RTITULO         shift and go to state 105
 
 
 state 96
 
-    (20) instruccion_2 -> LLAA RCONTENIDO LLAC CORA RTIPO2 CORC . LLAA DIV RCONTENIDO LLAC
+    (21) instruccion_2 -> LLAA RTITULO RCOLOR IGUAL COLOR RTAMANIO . IGUAL ENTERO DIV LLAC
 
-    LLAA            shift and go to state 106
+    IGUAL           shift and go to state 106
 
 
 state 97
 
-    (23) instruccion_2 -> LLAA RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO . IGUAL ENTERO DIV LLAC
+    (19) instruccion_2 -> LLAA RDESCRIPCION LLAC CORA RTEXTO2 CORC . LLAA DIV RDESCRIPCION LLAC
 
-    IGUAL           shift and go to state 107
+    LLAA            shift and go to state 107
 
 
 state 98
 
-    (10) INSTFUNCION -> LLAA RFUNCION IGUAL RESCRIBIR LLAC instrucciones_2 LLAA DIV RFUNCION . LLAC
+    (22) instruccion_2 -> LLAA RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO . IGUAL ENTERO DIV LLAC
 
-    LLAC            shift and go to state 108
+    IGUAL           shift and go to state 108
 
 
 state 99
+
+    (20) instruccion_2 -> LLAA RCONTENIDO LLAC CORA RTIPO2 CORC . LLAA DIV RCONTENIDO LLAC
+
+    LLAA            shift and go to state 109
+
+
+state 100
+
+    (23) instruccion_2 -> LLAA RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO . IGUAL ENTERO DIV LLAC
+
+    IGUAL           shift and go to state 110
+
+
+state 101
+
+    (10) INSTFUNCION -> LLAA RFUNCION IGUAL RESCRIBIR LLAC instrucciones_2 LLAA DIV RFUNCION . LLAC
+
+    LLAC            shift and go to state 111
+
+
+state 102
 
     (14) instruccion_2 -> LLAA ROPERACION IGUAL tipo LLAC instrucciones_2 LLAA . DIV ROPERACION LLAC
     (14) instruccion_2 -> LLAA . ROPERACION IGUAL tipo LLAC instrucciones_2 LLAA DIV ROPERACION LLAC
@@ -1098,7 +1131,7 @@ state 99
     (22) instruccion_2 -> LLAA . RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC
     (23) instruccion_2 -> LLAA . RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC
 
-    DIV             shift and go to state 109
+    DIV             shift and go to state 112
     ROPERACION      shift and go to state 25
     RNUMERO         shift and go to state 26
     RTITULO         shift and go to state 27
@@ -1106,63 +1139,63 @@ state 99
     RCONTENIDO      shift and go to state 29
 
 
-state 100
+state 103
 
     (15) instruccion_2 -> LLAA RNUMERO LLAC DECIMAL LLAA DIV RNUMERO . LLAC
 
-    LLAC            shift and go to state 110
-
-
-state 101
-
-    (16) instruccion_2 -> LLAA RNUMERO LLAC ENTERO LLAA DIV RNUMERO . LLAC
-
-    LLAC            shift and go to state 111
-
-
-state 102
-
-    (18) instruccion_2 -> LLAA RTITULO LLAC ROPERACIONES LLAA DIV RTITULO . LLAC
-
-    LLAC            shift and go to state 112
-
-
-state 103
-
-    (21) instruccion_2 -> LLAA RTITULO RCOLOR IGUAL COLOR RTAMANIO IGUAL . ENTERO DIV LLAC
-
-    ENTERO          shift and go to state 113
+    LLAC            shift and go to state 113
 
 
 state 104
 
-    (19) instruccion_2 -> LLAA RDESCRIPCION LLAC CORA RTEXTO2 CORC LLAA . DIV RDESCRIPCION LLAC
+    (16) instruccion_2 -> LLAA RNUMERO LLAC ENTERO LLAA DIV RNUMERO . LLAC
 
-    DIV             shift and go to state 114
+    LLAC            shift and go to state 114
 
 
 state 105
 
-    (22) instruccion_2 -> LLAA RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO IGUAL . ENTERO DIV LLAC
+    (18) instruccion_2 -> LLAA RTITULO LLAC ROPERACIONES LLAA DIV RTITULO . LLAC
 
-    ENTERO          shift and go to state 115
+    LLAC            shift and go to state 115
 
 
 state 106
 
-    (20) instruccion_2 -> LLAA RCONTENIDO LLAC CORA RTIPO2 CORC LLAA . DIV RCONTENIDO LLAC
+    (21) instruccion_2 -> LLAA RTITULO RCOLOR IGUAL COLOR RTAMANIO IGUAL . ENTERO DIV LLAC
 
-    DIV             shift and go to state 116
+    ENTERO          shift and go to state 116
 
 
 state 107
 
-    (23) instruccion_2 -> LLAA RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO IGUAL . ENTERO DIV LLAC
+    (19) instruccion_2 -> LLAA RDESCRIPCION LLAC CORA RTEXTO2 CORC LLAA . DIV RDESCRIPCION LLAC
 
-    ENTERO          shift and go to state 117
+    DIV             shift and go to state 117
 
 
 state 108
+
+    (22) instruccion_2 -> LLAA RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO IGUAL . ENTERO DIV LLAC
+
+    ENTERO          shift and go to state 118
+
+
+state 109
+
+    (20) instruccion_2 -> LLAA RCONTENIDO LLAC CORA RTIPO2 CORC LLAA . DIV RCONTENIDO LLAC
+
+    DIV             shift and go to state 119
+
+
+state 110
+
+    (23) instruccion_2 -> LLAA RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO IGUAL . ENTERO DIV LLAC
+
+    ENTERO          shift and go to state 120
+
+
+state 111
 
     (10) INSTFUNCION -> LLAA RFUNCION IGUAL RESCRIBIR LLAC instrucciones_2 LLAA DIV RFUNCION LLAC .
 
@@ -1170,14 +1203,14 @@ state 108
     $end            reduce using rule 10 (INSTFUNCION -> LLAA RFUNCION IGUAL RESCRIBIR LLAC instrucciones_2 LLAA DIV RFUNCION LLAC .)
 
 
-state 109
+state 112
 
     (14) instruccion_2 -> LLAA ROPERACION IGUAL tipo LLAC instrucciones_2 LLAA DIV . ROPERACION LLAC
 
-    ROPERACION      shift and go to state 118
+    ROPERACION      shift and go to state 121
 
 
-state 110
+state 113
 
     (15) instruccion_2 -> LLAA RNUMERO LLAC DECIMAL LLAA DIV RNUMERO LLAC .
 
@@ -1185,7 +1218,7 @@ state 110
     CADENA          reduce using rule 15 (instruccion_2 -> LLAA RNUMERO LLAC DECIMAL LLAA DIV RNUMERO LLAC .)
 
 
-state 111
+state 114
 
     (16) instruccion_2 -> LLAA RNUMERO LLAC ENTERO LLAA DIV RNUMERO LLAC .
 
@@ -1193,7 +1226,7 @@ state 111
     CADENA          reduce using rule 16 (instruccion_2 -> LLAA RNUMERO LLAC ENTERO LLAA DIV RNUMERO LLAC .)
 
 
-state 112
+state 115
 
     (18) instruccion_2 -> LLAA RTITULO LLAC ROPERACIONES LLAA DIV RTITULO LLAC .
 
@@ -1201,84 +1234,84 @@ state 112
     CADENA          reduce using rule 18 (instruccion_2 -> LLAA RTITULO LLAC ROPERACIONES LLAA DIV RTITULO LLAC .)
 
 
-state 113
+state 116
 
     (21) instruccion_2 -> LLAA RTITULO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO . DIV LLAC
 
-    DIV             shift and go to state 119
-
-
-state 114
-
-    (19) instruccion_2 -> LLAA RDESCRIPCION LLAC CORA RTEXTO2 CORC LLAA DIV . RDESCRIPCION LLAC
-
-    RDESCRIPCION    shift and go to state 120
-
-
-state 115
-
-    (22) instruccion_2 -> LLAA RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO . DIV LLAC
-
-    DIV             shift and go to state 121
-
-
-state 116
-
-    (20) instruccion_2 -> LLAA RCONTENIDO LLAC CORA RTIPO2 CORC LLAA DIV . RCONTENIDO LLAC
-
-    RCONTENIDO      shift and go to state 122
+    DIV             shift and go to state 122
 
 
 state 117
 
-    (23) instruccion_2 -> LLAA RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO . DIV LLAC
+    (19) instruccion_2 -> LLAA RDESCRIPCION LLAC CORA RTEXTO2 CORC LLAA DIV . RDESCRIPCION LLAC
 
-    DIV             shift and go to state 123
+    RDESCRIPCION    shift and go to state 123
 
 
 state 118
 
-    (14) instruccion_2 -> LLAA ROPERACION IGUAL tipo LLAC instrucciones_2 LLAA DIV ROPERACION . LLAC
+    (22) instruccion_2 -> LLAA RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO . DIV LLAC
 
-    LLAC            shift and go to state 124
+    DIV             shift and go to state 124
 
 
 state 119
 
-    (21) instruccion_2 -> LLAA RTITULO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV . LLAC
+    (20) instruccion_2 -> LLAA RCONTENIDO LLAC CORA RTIPO2 CORC LLAA DIV . RCONTENIDO LLAC
 
-    LLAC            shift and go to state 125
+    RCONTENIDO      shift and go to state 125
 
 
 state 120
 
-    (19) instruccion_2 -> LLAA RDESCRIPCION LLAC CORA RTEXTO2 CORC LLAA DIV RDESCRIPCION . LLAC
+    (23) instruccion_2 -> LLAA RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO . DIV LLAC
 
-    LLAC            shift and go to state 126
+    DIV             shift and go to state 126
 
 
 state 121
 
-    (22) instruccion_2 -> LLAA RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV . LLAC
+    (14) instruccion_2 -> LLAA ROPERACION IGUAL tipo LLAC instrucciones_2 LLAA DIV ROPERACION . LLAC
 
     LLAC            shift and go to state 127
 
 
 state 122
 
-    (20) instruccion_2 -> LLAA RCONTENIDO LLAC CORA RTIPO2 CORC LLAA DIV RCONTENIDO . LLAC
+    (21) instruccion_2 -> LLAA RTITULO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV . LLAC
 
     LLAC            shift and go to state 128
 
 
 state 123
 
-    (23) instruccion_2 -> LLAA RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV . LLAC
+    (19) instruccion_2 -> LLAA RDESCRIPCION LLAC CORA RTEXTO2 CORC LLAA DIV RDESCRIPCION . LLAC
 
     LLAC            shift and go to state 129
 
 
 state 124
+
+    (22) instruccion_2 -> LLAA RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV . LLAC
+
+    LLAC            shift and go to state 130
+
+
+state 125
+
+    (20) instruccion_2 -> LLAA RCONTENIDO LLAC CORA RTIPO2 CORC LLAA DIV RCONTENIDO . LLAC
+
+    LLAC            shift and go to state 131
+
+
+state 126
+
+    (23) instruccion_2 -> LLAA RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV . LLAC
+
+    LLAC            shift and go to state 132
+
+
+state 127
 
     (14) instruccion_2 -> LLAA ROPERACION IGUAL tipo LLAC instrucciones_2 LLAA DIV ROPERACION LLAC .
 
@@ -1286,7 +1319,7 @@ state 124
     CADENA          reduce using rule 14 (instruccion_2 -> LLAA ROPERACION IGUAL tipo LLAC instrucciones_2 LLAA DIV ROPERACION LLAC .)
 
 
-state 125
+state 128
 
     (21) instruccion_2 -> LLAA RTITULO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC .
 
@@ -1294,7 +1327,7 @@ state 125
     CADENA          reduce using rule 21 (instruccion_2 -> LLAA RTITULO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC .)
 
 
-state 126
+state 129
 
     (19) instruccion_2 -> LLAA RDESCRIPCION LLAC CORA RTEXTO2 CORC LLAA DIV RDESCRIPCION LLAC .
 
@@ -1302,7 +1335,7 @@ state 126
     CADENA          reduce using rule 19 (instruccion_2 -> LLAA RDESCRIPCION LLAC CORA RTEXTO2 CORC LLAA DIV RDESCRIPCION LLAC .)
 
 
-state 127
+state 130
 
     (22) instruccion_2 -> LLAA RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC .
 
@@ -1310,7 +1343,7 @@ state 127
     CADENA          reduce using rule 22 (instruccion_2 -> LLAA RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC .)
 
 
-state 128
+state 131
 
     (20) instruccion_2 -> LLAA RCONTENIDO LLAC CORA RTIPO2 CORC LLAA DIV RCONTENIDO LLAC .
 
@@ -1318,7 +1351,7 @@ state 128
     CADENA          reduce using rule 20 (instruccion_2 -> LLAA RCONTENIDO LLAC CORA RTIPO2 CORC LLAA DIV RCONTENIDO LLAC .)
 
 
-state 129
+state 132
 
     (23) instruccion_2 -> LLAA RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC .
 

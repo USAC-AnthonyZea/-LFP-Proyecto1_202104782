@@ -1,7 +1,7 @@
 from expression import *
 from operador import Operador
 from generador import Generador
-#import math
+import math
 
 class Aritmeticas(Expression):
     
@@ -55,5 +55,14 @@ class Aritmeticas(Expression):
             if self.tipo == Operador.INVERSO:
                 return generador.addReverse(izq) if getER else izq**(-1)
                 # return izq^(-1)
+            elif self.tipo == Operador.SENO:
+                return generador.addSen(izq) if getER else math.sin(math.radians(izq))
+                # return sen(izq)
+            elif self.tipo == Operador.COSENO:
+                return generador.addCos(izq) if getER else math.cos(math.radians(izq))
+                # return cos(izq)
+            elif self.tipo == Operador.TANGENTE:
+                return generador.addTan(izq) if getER else math.tan(math.radians(izq))
+                # return tan(izq)
 
             

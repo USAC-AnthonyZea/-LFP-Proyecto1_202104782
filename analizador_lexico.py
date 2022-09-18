@@ -1,9 +1,11 @@
+from estilo import Estilo
 from numero import Numero # Clase numero, para obtener un objeto Numero
 from aritmeticas import Aritmeticas # Clase aritmeticas, para obtener un objeto Aritmeticas
 from operador import Operador # Clase para operadores como: Mas, Menos, mayor, igual, etc...
 from errores import Errores # Clase para detectar errores
 from texto import Texto # Clase para el texto
 from funcion import Funcion # Clase para funcion
+from estilo import Estilo # Clase para Estilo
 
 # Nombre de los tokens
 tokens = (
@@ -29,6 +31,9 @@ tokens = (
     'RPOTENCIA',
     'RMOD',
     'RINVERSO',
+    'RSENO',
+    'RCOSENO',
+    'RTANGENTE',
     'RESCRIBIR',
     'LLAA',
     'LLAC',
@@ -72,6 +77,9 @@ t_RRAIZ           = r'RAIZ'
 t_RPOTENCIA       = r'POTENCIA'
 t_RMOD            = r'MOD'
 t_RINVERSO        = r'INVERSO'
+t_RSENO           = r'SENO'
+t_RCOSENO         = r'COSENO'
+t_RTANGENTE       = r'TANGENTE'
 t_RESCRIBIR       = r'ESCRIBIR'
 t_RNUMERO         = r'Numero'
 t_LLAA            = r'<'
@@ -180,7 +188,6 @@ def p_instruccionFuncion(t):
 
 def p_instruccionEstilo(t):
     'INSTESTILO     :   LLAA RESTILO LLAC instrucciones_2 LLAA DIV RESTILO LLAC'
-    #print('Aqui solo tienen que subir los Estilos con clases ', t[4])
     t[0] = t[4]
 
 def p_instrucciones_2_lista(t):
@@ -217,28 +224,23 @@ def p_instruccion_2_titulo(t):
 
 def p_instruccion_2_descripcion(t):
     'instruccion_2 : LLAA RDESCRIPCION LLAC CORA RTEXTO2 CORC LLAA DIV RDESCRIPCION LLAC'
-    #print('Aqui solo tienen que subir las intrucciones con clases ', t[5])
     t[0] = t[5]
 
 def p_instruccion_2_contenido(t):
     'instruccion_2 : LLAA RCONTENIDO LLAC CORA RTIPO2 CORC LLAA DIV RCONTENIDO LLAC'
-    #print('Aqui solo tienen que subir las intrucciones con clases ', t[5])
     t[0] = t[5]
 
 def p_instruccion_2_titulo_2(t):
     'instruccion_2 : LLAA RTITULO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC'
-    #print('Aqui solo tienen que subir las intrucciones con clases ', t[4])
-    t[0] = t[4]
+    t[0] = Estilo(t[2], t[5], t[8], t.lineno(1), find_column(input,t.slice[1]))
 
 def p_instruccion_2_descripcion_2(t):
     'instruccion_2 : LLAA RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC'
-    #print('Aqui solo tienen que subir las intrucciones con clases ', t[4])
-    t[0] = t[4]
+    t[0] = Estilo(t[2], t[5], t[8], t.lineno(1), find_column(input,t.slice[1]))
 
 def p_instruccion_2_contenido_2(t):
     'instruccion_2 : LLAA RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC'
-    #print('Aqui solo tienen que subir las intrucciones con clases ', t[4])
-    t[0] = t[4]
+    t[0] = Estilo(t[2], t[5], t[8], t.lineno(1), find_column(input,t.slice[1]))
 
 def p_color(t):
     '''COLOR    : RAZUL 
@@ -250,7 +252,6 @@ def p_color(t):
                 | RCELESTE 
                 | RCAFE
     '''
-    #print('Aqui pueden agregar mas colores, pero deben de agregarlos a la lista de tokens en la primera lista')
     t[0] = t[1]
 
 def p_tipo(t):
@@ -262,6 +263,9 @@ def p_tipo(t):
             |   RPOTENCIA
             |   RMOD
             |   RINVERSO
+            |   RSENO
+            |   RCOSENO
+            |   RTANGENTE
     '''
 
     if t[1] == 'SUMA':
@@ -288,6 +292,15 @@ def p_tipo(t):
     elif t[1] == 'INVERSO':
         t[0] = Operador.INVERSO
     
+    elif t[1] == 'SENO':
+        t[0] = Operador.SENO
+
+    elif t[1] == 'COSENO':
+        t[0] = Operador.COSENO
+
+    elif t[1] == 'TANGENTE':
+        t[0] = Operador.TANGENTE
+    
 # Aqui reconoce un error de sintaxis, pueden crear un array e irlos agregando
 # para obtenerlos después
 def p_error(t):
@@ -309,23 +322,25 @@ def parse(input):
     return parser.parse(input)
 
 #f = open('analizador.txt', 'r')
-#
+
 errores_ = []
-#
+
 #input = f.read()
 #f.close()
 #variable = parse(input)
+
+#getER = False
 #
-#getERFalse = False #Para obtener el resultado
-#getERTrue = True # Para obtener la expresion regular
 #n = 1
-#print()
-#for var in variable:
-#    for var_ in var:
-#        print(f"Operacion {n}:")
-#        print(str(var_.ejecutar(getERTrue))+" = " + str(var_.ejecutar(getERFalse)))
-#        print()
-#        n+=1
+#if variable:
+#    for var in variable:
+#        if isinstance(var, list):
+#            for var_ in var:
+#                print(var_.ejecutar(getER))
+#        elif isinstance(var, Texto):
+#            print(var.ejecutar(getER))
+#        elif isinstance(var, Funcion):
+#            print(var.ejecutar(getER))
 #
 ##Errores
 #print("Errores\n")
