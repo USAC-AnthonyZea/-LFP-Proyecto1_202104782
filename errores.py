@@ -8,4 +8,5 @@ class Errores():
     
 
     def toString(self):
-        return f"=======\nLexema: {self.lexema}\nTipo: {self.tipo}\nFila: {self.columna}\nColumna: {self.fila}\n======="
+        
+        return self.lexema, self.tipo, self.columna, self.fila

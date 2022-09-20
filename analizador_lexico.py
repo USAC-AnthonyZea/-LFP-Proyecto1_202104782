@@ -182,9 +182,7 @@ def p_instruccionTexto(t):
 
 def p_instruccionFuncion(t):
     'INSTFUNCION    :   LLAA RFUNCION IGUAL RESCRIBIR LLAC instrucciones_2 LLAA DIV RFUNCION LLAC'
-   # print('Aqui solo tienen que subir las Funciones con clases ', t[6])
     t[0] = Funcion(t[6][0], t.lineno(1), find_column(input,t.slice[1]))
-    #t[0] = t[6]
 
 def p_instruccionEstilo(t):
     'INSTESTILO     :   LLAA RESTILO LLAC instrucciones_2 LLAA DIV RESTILO LLAC'
@@ -321,27 +319,14 @@ def parse(input):
     lexer.lineno = 1
     return parser.parse(input)
 
-#f = open('analizador.txt', 'r')
+f = open('analizador.LFP', 'r')
 
 errores_ = []
 
-#input = f.read()
-#f.close()
-#variable = parse(input)
+input = f.read()
+f.close()
+variable = parse(input)
 
-#getER = False
-#
-#n = 1
-#if variable:
-#    for var in variable:
-#        if isinstance(var, list):
-#            for var_ in var:
-#                print(var_.ejecutar(getER))
-#        elif isinstance(var, Texto):
-#            print(var.ejecutar(getER))
-#        elif isinstance(var, Funcion):
-#            print(var.ejecutar(getER))
-#
 ##Errores
 #print("Errores\n")
 #for var in errores_:

@@ -3,6 +3,7 @@ from tkinter import INSERT, ttk
 from tkinter import filedialog
 from tkinter import messagebox
 from analizador_lexico import *
+from files_html import HtmlFile
 import os
 
 class App(tk.Tk):
@@ -67,11 +68,14 @@ class App(tk.Tk):
             else:
                 # Proceso, para el analizador lexico
                 variable = parse(estructure)
-
-                #getERFalse = False #Para obtener el resultado
-                #getERTrue = True # Para obtener la expresion regular
                 n = 1
                 print()
+
+                texto = "" # Para almacenar el texto
+                title_operaciones = "" # Para almacenar el titulo
+                operaciones = [] # Para almacenar las operaciones
+                expre = [] # Para almacenar las expresiones
+                estilo = [] # Para almacenar los estilos 
                 
                 if variable:
                     for var in variable:
@@ -79,19 +83,26 @@ class App(tk.Tk):
                             for var_ in var:
                                 if isinstance(var_, Aritmeticas):
                                     print(f"Operacion {n}: ")
+                                    operaciones.append(f"Operacion {n}: ")
                                     print(f'{var_.ejecutar(True)} = {var_.ejecutar(False)}')
+                                    expre.append(f'{var_.ejecutar(True)} = {var_.ejecutar(False)}')
                                     print()
                                     n+=1
                                 elif isinstance(var_, Estilo):
                                     print(var_.ejecutar(False))
+                                    estilo.append(var_.ejecutar(False))
                                     print()
                     
                         elif isinstance(var, Texto):
+                            texto = var.ejecutar(False) 
                             print(var.ejecutar(False))
                             print()
                         elif isinstance(var, Funcion):
+                            title_operaciones = var.ejecutar(False)
                             print(var.ejecutar(False))
                             print()
+                
+                HtmlFile.create_ResultadosHML(texto, title_operaciones, operaciones, expre, estilo)
 
                 messagebox.showinfo("Analizador", "Archivo Analizado correctamente")
 
@@ -99,6 +110,7 @@ class App(tk.Tk):
         def parse_errores_File():
 
             estructure = txt_area.get(1.0, tk.END) #Tomamos el texto del area de texto
+            _error = [] # Para almacenar errores
 
             if str(estructure).isspace():
                 messagebox.showerror("Archivo invalido", "Verifique que haya abierto un archivo, \n           o un archivo adecuado") # Si el text esta vacio
@@ -107,13 +119,17 @@ class App(tk.Tk):
                 #Errores
                 print("Errores\n")
                 cc = 1
+
                 for var in errores_:
                     print(f"\tError {cc}:")
                     print(var.toString())
-                    print()
+                    _error.append(list(var.toString()))
                     cc+=1
                 
                 messagebox.showinfo("Errores", "Archivo 'html' generado correctamente")
+
+            print(_error)
+            HtmlFile.create_ErroresHtml(_error)
 
         #Create buttons
         btn_abrir = tk.Button(self, text="ABRIR", command = openFile ,font=("Berlin Sans FB Demi", 13, "bold"), bg="#455a64", fg="white")

@@ -56,13 +56,13 @@ class Aritmeticas(Expression):
                 return generador.addReverse(izq) if getER else izq**(-1)
                 # return izq^(-1)
             elif self.tipo == Operador.SENO:
-                return generador.addSen(izq) if getER else math.sin(math.radians(izq))
+                return generador.addSen(izq) if getER else math.sin(izq)
                 # return sen(izq)
             elif self.tipo == Operador.COSENO:
-                return generador.addCos(izq) if getER else math.cos(math.radians(izq))
+                return generador.addCos(izq) if getER else math.cos(izq)
                 # return cos(izq)
             elif self.tipo == Operador.TANGENTE:
-                return generador.addTan(izq) if getER else math.tan(math.radians(izq))
+                return generador.addTan(izq) if getER else math.tan(izq)
                 # return tan(izq)
 
             
