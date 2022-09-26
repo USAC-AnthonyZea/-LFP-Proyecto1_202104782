@@ -1,22 +1,22 @@
 <Tipo>
-<Operacion=SUMA>
-    <Operacion=MULTIPLICACION>
-        <Numero>{20</Numero>
+<Operacion=RESTA>
+    <Operacion=SUMA>
+        <Numero>20</Numero>
         <Numero>4</Numero>
     </Operacion>
-Â¿
-    <Operacion=DIVISION>
+°!
+    <Operacion=SUMA>
         <Numero>500</Numero>
         <Numero>25</Numero>
     </Operacion>
 </Operacion>
-!
-<Operacion=RESTA>
-    <Operacion=POTENCIA>
+°
+<Operacion=SUMA>
+    <Operacion=RESTA>
         <Numero>6</Numero>
         <Numero>5</Numero>
     </Operacion>
-
+?
     <Operacion=RAIZ>
         <Numero>2</Numero>
         <Numero>64</Numero>
@@ -52,7 +52,12 @@
 </Funcion>
 
 <Estilo>
-    <Titulo Color=NEGRO Tamanio=20/>
-    <Descripcion Color=ROJO Tamanio=10/>
-    <Contenido Color=AZUL Tamanio=10/>
+    <Titulo Color=VERDE Tamanio=40/>
+    <Descripcion Color=AZUL Tamanio=30/>
+    <Contenido Color=NEGRO Tamanio=30/>
 </Estilo> 
+
+
+
+
+

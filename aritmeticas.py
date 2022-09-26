@@ -64,5 +64,3 @@ class Aritmeticas(Expression):
             elif self.tipo == Operador.TANGENTE:
                 return generador.addTan(izq) if getER else math.tan(izq)
                 # return tan(izq)
-
-            

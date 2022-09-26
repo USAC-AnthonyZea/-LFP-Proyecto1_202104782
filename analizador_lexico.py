@@ -1,4 +1,4 @@
-from estilo import Estilo
+from estilo import Estilo # Clase para imprimir estilo
 from numero import Numero # Clase numero, para obtener un objeto Numero
 from aritmeticas import Aritmeticas # Clase aritmeticas, para obtener un objeto Aritmeticas
 from operador import Operador # Clase para operadores como: Mas, Menos, mayor, igual, etc...
@@ -54,8 +54,7 @@ tokens = (
     'RCAFE',
 )
 
-# Aqui se dan los valores de cada token
-# En este caso decimos el valor que va a contener cada token osea, el lexema
+# declarando lexema de cada token
 t_RESTILO         = r'Estilo'
 t_RTIPO2          = r'TIPO'
 t_RTEXTO2         = r'TEXTO'
@@ -117,7 +116,7 @@ def t_ENTERO(t):
         t.value = 0
     return t
 
-# Esta esa para poder aceptar cadenas de texto, lo vamos a usar más adelante
+# Gramatica para texto
 def t_CADENA(t):
     r'(\".*?\")'
     t.value = t.value[1:-1] #Se remueven las comillas de la entrada
@@ -128,8 +127,7 @@ def t_CADENA(t):
     t.value = t.value.replace('\\\\','\\')
     return t
 
-# Esta función cuando lee un salto de línea lo agrega al analizador para 
-# Saber en qué linea se encuentra
+# Saber en que linea se encuentra
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
@@ -137,7 +135,7 @@ def t_newline(t):
 # Caracteres ignorados en este caso los espacios y las tabulaciones
 t_ignore = " \t"
 
-# Este es un error léxico, pueden irlos almacenando en un array para obtenerlos después
+# Errores lexicos
 def t_error(t):
 
     error = Errores(t.value[0],'Error Lexico', t.lineno, find_column(input,t))
@@ -299,8 +297,7 @@ def p_tipo(t):
     elif t[1] == 'TANGENTE':
         t[0] = Operador.TANGENTE
     
-# Aqui reconoce un error de sintaxis, pueden crear un array e irlos agregando
-# para obtenerlos después
+# Errores de sintaxis
 def p_error(t):
     print("Error de sintaxis en '%s'" % t.value)
 
@@ -326,9 +323,3 @@ errores_ = []
 input = f.read()
 f.close()
 variable = parse(input)
-
-##Errores
-#print("Errores\n")
-#for var in errores_:
-#    print(var.toString())
-#    print()

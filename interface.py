@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import INSERT, ttk
-from tkinter import filedialog
-from tkinter import messagebox
+from tkinter import filedialog, messagebox
 from analizador_lexico import *
 from files_html import HtmlFile
 import os
@@ -12,26 +11,27 @@ class App(tk.Tk):
         super().__init__()
 
         #Window config
-        self.title("Proyecto 1") # Titulo de ventana
+        self.title("Proyecto 1 - Analizador Lexico") # Titulo de ventana
         self.resizable(False, False) #Editable
         self.addWidgets() # Creamos los widgets
+        self.file = None # Archivo global
 
     def addWidgets(self):
 
         #Configuracion ventana
         self.configure(bg="#1c313a") #Color de fondo
-    
+  
         # Funcion para abrir archivo
         def openFile():
 
             #Abrimos el archivo
-            file = filedialog.askopenfilename() # Obtenemos ruta y nombre de archivo
+            self.file = filedialog.askopenfilename() # Obtenemos ruta y nombre de archivo
 
-            ruta, extension = os.path.splitext(file) # Parseamos el archivo para obtener ruta
+            ruta, extension = os.path.splitext(self.file) # Parseamos el archivo para obtener ruta
 
             if extension == ".LFP" or extension == ".lfp": # Verificamos que sea .lfp
 
-                fileOpen = open(file, 'r') # Abrimos el archivo
+                fileOpen = open(self.file, 'r') # Abrimos el archivo
 
                 #Leemos el contenido
                 lectura = fileOpen.read() # Leemos el archivo
@@ -44,18 +44,29 @@ class App(tk.Tk):
         # Funcion para guardar archivo
         def saveFile():
 
-            new_file = filedialog.asksaveasfilename(defaultextension="txt", 
-            filetypes=[("Archivos de texto", "*.txt"), ("Todos los archivos", "*.*")]) #Cuadro de dialogo
+            fileOpen = open(self.file, 'w') # Abrimos el archivo de entrada
+            content = txt_area.get(1.0, tk.END) # Tomamos el contenido del area de texto
+            
+            fileOpen.write(content) # Escribimos en el archivo los cambios
+            fileOpen.close() # Cerramos el archivo
+
+            messagebox.showinfo(message="Cambios Guardados", title="Guardar")
+                
+        # Funcion para guardar archivo con otro nombre
+        def save_asFile():
+            new_file = filedialog.asksaveasfilename(defaultextension="lfp", 
+            filetypes=[("Archivos LFP", "*.LFP"), ("Todos los archivos", "*.*")]) #Cuadro de dialogo
 
             if not new_file: #Validar que se este guardando un archivo
                 return messagebox.showerror("Error", "No se ha guardado ningun archivo") # En caos no se guarde
 
             messagebox.showinfo("Guardar archivo", "Archivo guardado correctamente")
-            new_archivo = open(new_file, "w")
-            txt_entrada = txt_area.get(1.0, tk.END)
 
-            new_archivo.write(txt_entrada)
-            new_archivo.close()
+            new_archivo = open(new_file, "w") # Abrimos el nuevo archivo
+            txt_entrada = txt_area.get(1.0, tk.END) # Tomamos el contenido del area de texto 
+
+            new_archivo.write(txt_entrada) # Escribimos el contenido en el nuevo archivo
+            new_archivo.close() # Cerramos el archivo
 
         # Funcion para analizar archivo
         def parseFile():
@@ -134,6 +145,7 @@ class App(tk.Tk):
         #Create buttons
         btn_abrir = tk.Button(self, text="ABRIR", command = openFile ,font=("Berlin Sans FB Demi", 13, "bold"), bg="#455a64", fg="white")
         btn_guardar = tk.Button(self, text="GUARDAR", command=saveFile, font=("Berlin Sans FB Demi", 13, "bold"), bg="#455a64", fg="white")
+        btn_guardar_como = tk.Button(self, text="GUARDAR COMO", command=save_asFile, font=("Berlin Sans FB Demi", 13, "bold"), bg="#455a64", fg="white")
         btn_analizar = tk.Button(self, text="ANALIZAR", command = parseFile, font=("Berlin Sans FB Demi", 13, "bold"), bg="#455a64", fg="white")
         btn_errores = tk.Button(self, text="ERRORES", command = parse_errores_File,font=("Berlin Sans FB Demi", 13, "bold"), bg="#455a64", fg="white")
         btn_salir = tk.Button(self, text="SALIR", command = lambda: self.quit(),  font=("Berlin Sans FB Demi", 13, "bold"), bg="#455a64", fg="white")
@@ -141,6 +153,15 @@ class App(tk.Tk):
         #Create Text area
         txt_area = tk.Text(self, bg="#b0bec5", font=("Calisto MT", 12), padx=20, pady=20)
 
+        # Eventos de combobox
+        def selection_changed(event):
+            selection = cmb_ayuda.get()
+            if selection == "Autor":
+                messagebox.showinfo(
+                    title="Autor",
+                message="Curso: Laboratorio de lenguajes Formales y de Programación \nSeccion: B+ \nNombre: Anthony Samuel Zea Herrera \nCarnet: 202104782"
+                )
+        
         #Create combobox
         style = ttk.Style()
         style.theme_create('combostyle', parent='alt',
@@ -155,14 +176,17 @@ class App(tk.Tk):
         cmb_ayuda = ttk.Combobox(self, values = options, foreground="White",  font= ("Berlin Sans FB Demi", 13, "bold"), justify = "center", state = "readonly")
         cmb_ayuda.current(0)
 
+        cmb_ayuda.bind("<<ComboboxSelected>>", selection_changed)
+
         #Ubicacion widgets
         btn_abrir.grid(row=0, column=0, sticky="nsew")
         btn_guardar.grid(row=0, column=1, sticky="nsew")
-        btn_analizar.grid(row=0, column=2, sticky="nsew")
-        btn_errores.grid(row=0, column=3, sticky="nsew")
-        btn_salir.grid(row=2, column=4, sticky="nsew", padx=15, pady=15)
-        cmb_ayuda.grid(row=0, column=4, sticky="nsew")
-        txt_area.grid(row=1, column=0, columnspan=5, padx=15, pady=15)
+        btn_guardar_como.grid(row=0, column=2, sticky="nsew")
+        btn_analizar.grid(row=0, column=3, sticky="nsew")
+        btn_errores.grid(row=0, column=4, sticky="nsew")
+        btn_salir.grid(row=2, column=5, sticky="nsew", padx=15, pady=15)
+        cmb_ayuda.grid(row=0, column=5, sticky="nsew")
+        txt_area.grid(row=1, column=0, columnspan=6, padx=15, pady=15)
     
 if __name__ == "__main__":
     app = App()
